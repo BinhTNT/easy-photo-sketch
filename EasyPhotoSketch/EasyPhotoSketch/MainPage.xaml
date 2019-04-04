@@ -5,24 +5,28 @@
              xmlns:input="clr-namespace:Plugin.InputKit.Shared.Controls;assembly=Plugin.InputKit"
              x:Class="EasyPhotoSketch.MainPage">
     <StackLayout>
-        <Grid>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="50" />
-            </Grid.RowDefinitions>
+        <StackLayout>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="50" />
+                </Grid.RowDefinitions>
 
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="*" />
-            </Grid.ColumnDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
 
-            <Button x:Name="takephoto" Text="Take Photo" Command="{Binding TakePhotoCommand}" Grid.Row="0" Grid.Column="0"/>
-            <Button x:Name="pickphoto" Text="Pick Photo" Command="{Binding PickPhotoCommand}" Grid.Row="0" Grid.Column="1"/>
-            <Button x:Name="savephoto" Text="Save Photo" Command="{Binding SavePhotoCommand}" Grid.Row="0" Grid.Column="2"/>
-        </Grid>
-        <input:AdvancedSlider TextColor="ForestGreen"  MaxValue="25" MinValue="5" StepValue="5" ValuePrefix="Bold:" BackgroundColor="WhiteSmoke" DisplayMinMaxValue="False" Value="{Binding BoldSliderValue}"/>
-        <Image HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" x:Name="photoview" Source="{Binding SketchedImageSource}"/>
-        <ActivityIndicator IsEnabled="{Binding IsBusy}" IsRunning="{Binding IsBusy}" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand"/>
+                <Button x:Name="takephoto" Text="Take Photo" Command="{Binding TakePhotoCommand}" Grid.Row="0" Grid.Column="0"/>
+                <Button x:Name="pickphoto" Text="Pick Photo" Command="{Binding PickPhotoCommand}" Grid.Row="0" Grid.Column="1"/>
+                <Button x:Name="savephoto" Text="Save Photo" Command="{Binding SavePhotoCommand}" Grid.Row="0" Grid.Column="2"/>
+            </Grid>
+            <input:AdvancedSlider ScaleX="0.9" TextColor="ForestGreen"  MaxValue="25" MinValue="5" StepValue="5" ValuePrefix="Bold:" BackgroundColor="WhiteSmoke" DisplayMinMaxValue="False" Value="{Binding BoldSliderValue}"/>
+        </StackLayout>
+        <StackLayout VerticalOptions="FillAndExpand">
+            <Image HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" x:Name="photoview" Source="{Binding SketchedImageSource}"/>
+            <ActivityIndicator IsEnabled="{Binding IsBusy}" IsRunning="{Binding IsBusy}" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand"/>
+        </StackLayout>
     </StackLayout>
 
 

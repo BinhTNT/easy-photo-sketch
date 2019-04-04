@@ -16,7 +16,7 @@ namespace EasyPhotoSketch.ViewModel
         private ImageSketchingHelper m_imageSketchingHelper = null;
         Bitmap m_sketchedBitmap = null;
         ImageSource m_sketchedImageSource = null;
-        float m_boldSliderValue = ImageSketchingHelper.RS_BLUR_RADIUS_MIN;
+        float m_boldSliderValue = ImageSketchingHelper.RS_BLUR_RADIUS_MAX;
         bool m_isBusy = false;
 
         public Command TakePhotoCommand { get; private set; }
