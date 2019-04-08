@@ -27,6 +27,7 @@
             <Image HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" x:Name="photoview" Source="{Binding SketchedImageSource}"/>
             <ActivityIndicator IsEnabled="{Binding IsBusy}" IsRunning="{Binding IsBusy}" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand"/>
         </StackLayout>
+        <Button x:Name="info" Text="info" Clicked="ViewInfoButton_Clicked"/>
     </StackLayout>
 
 
