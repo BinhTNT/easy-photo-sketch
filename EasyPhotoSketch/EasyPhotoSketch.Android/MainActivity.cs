@@ -12,6 +12,7 @@ using Android.Support.V4.Content;
 using Android.Support.V4.App;
 using Plugin.CurrentActivity;
 using Plugin.Media;
+using Java.IO;
 
 namespace EasyPhotoSketch.Droid
 {
@@ -26,6 +27,8 @@ namespace EasyPhotoSketch.Droid
             base.OnCreate(savedInstanceState);
 
             DialogManager.Instance().SetShowDiaLogCallback(ShowAlertDiaLog2);
+
+            MediaScannerHelper.Instance().SetScanMediaFileCallback(ScanMedia);
 
             CrossCurrentActivity.Current.Init(this, savedInstanceState);
 
@@ -84,6 +87,16 @@ namespace EasyPhotoSketch.Droid
             });
 
             dialog.Show();
+        }
+
+        public void ScanMedia(string filePath)
+        {
+            //Broadcast the Media Scanner Intent to trigger it
+            Intent mediaScanIntent = new Intent(Intent.ActionMediaScannerScanFile);
+            File file = new File(filePath);
+            Android.Net.Uri contentUri = Android.Net.Uri.FromFile(file);
+            mediaScanIntent.SetData(contentUri);
+            SendBroadcast(mediaScanIntent);
         }
     }
 }

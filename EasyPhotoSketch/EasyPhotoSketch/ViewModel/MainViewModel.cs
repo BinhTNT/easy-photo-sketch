@@ -6,6 +6,7 @@ using Plugin.Permissions;
 using Plugin.Permissions.Abstractions;
 using System.IO;
 using Android.Graphics;
+using Android.Content;
 
 namespace EasyPhotoSketch.ViewModel
 {
@@ -236,6 +237,7 @@ namespace EasyPhotoSketch.ViewModel
         private void ExcuteDiaLogAction_OK()
         {
             SaveSketchImage();
+
         }
 
         private void SaveSketchImage()
@@ -246,8 +248,11 @@ namespace EasyPhotoSketch.ViewModel
                 var stream = new FileStream(filePath, FileMode.Create);
                 m_sketchedBitmap.Compress(Bitmap.CompressFormat.Jpeg, 100, stream);
                 stream.Close();
+                //Make the image available in Gallery by invoke media scanner event
+                MediaScannerHelper.Instance().ScanMediaFile(filePath);
             }
         }
+
 
         public Bitmap CreateBitmapFromByteArrray(MemoryStream stream)
         {
