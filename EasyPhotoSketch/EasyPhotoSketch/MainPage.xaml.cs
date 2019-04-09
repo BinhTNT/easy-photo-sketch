@@ -16,5 +16,21 @@ namespace EasyPhotoSketch
         {
             await Navigation.PushModalAsync(new InfoPage());
         }
+
+        protected override bool OnBackButtonPressed()
+        {
+            Device.BeginInvokeOnMainThread(async () =>
+            {
+                var result = await DisplayAlert("", "Do you really want to close this application?", "Yes", "No");
+                if (result)
+                {
+                    if (Device.RuntimePlatform == Device.Android)
+                    {
+                        Android.OS.Process.KillProcess(Android.OS.Process.MyPid());
+                    }
+                }
+            });
+            return true;
+        }
     }
 }
