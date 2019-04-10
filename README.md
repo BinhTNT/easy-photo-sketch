@@ -1,5 +1,6 @@
 App infos:
 - App Name: Easy Photo Sketch
+- App Version: 1.0
 - App Descriptions: Process the images saved on device and result the pencil sketching styles images
 - App Type: Xamarin Forms
 - Supported Stores: Google Play
