@@ -20,6 +20,9 @@ namespace EasyPhotoSketch.ViewModel
         float m_boldSliderValue = ImageSketchingHelper.RS_BLUR_RADIUS_MAX;
         bool m_isBusy = false;
 
+        PermissionStatus cameraStatus;
+        PermissionStatus storageStatus;
+
         public Command TakePhotoCommand { get; private set; }
         public Command PickPhotoCommand { get; private set; }
         public Command SavePhotoCommand { get; private set; }
@@ -78,13 +81,6 @@ namespace EasyPhotoSketch.ViewModel
             {
                 var cameraStatus = await CrossPermissions.Current.CheckPermissionStatusAsync(Permission.Camera);
                 var storageStatus = await CrossPermissions.Current.CheckPermissionStatusAsync(Permission.Storage);
-
-                if (cameraStatus != PermissionStatus.Granted || storageStatus != PermissionStatus.Granted)
-                {
-                    //var results = await CrossPermissions.Current.RequestPermissionsAsync(new[] { Permission.Camera, Permission.Storage });
-                    //cameraStatus = results[Permission.Camera];
-                    //storageStatus = results[Permission.Storage];
-                }
 
                 if (CrossMedia.Current.IsTakePhotoSupported && cameraStatus == PermissionStatus.Granted && storageStatus == PermissionStatus.Granted)
                 {
@@ -149,7 +145,9 @@ namespace EasyPhotoSketch.ViewModel
                 else
                 {
                     IsBusy = false;
-                    await sMainPage.DisplayAlert("Permission Denied.", "Camera and Storage permissions are required.", "OK");
+                    var statusResults = await CrossPermissions.Current.RequestPermissionsAsync(new[] { Permission.Camera, Permission.Storage });
+                    cameraStatus = statusResults[Permission.Camera];
+                    storageStatus = statusResults[Permission.Storage];
                     return;
                 }
             }
@@ -165,17 +163,9 @@ namespace EasyPhotoSketch.ViewModel
         {
             try
             {
-                var photoStatus = await CrossPermissions.Current.CheckPermissionStatusAsync(Permission.Photos);
-                var storageStatus = await CrossPermissions.Current.CheckPermissionStatusAsync(Permission.Storage);
-
-                if (photoStatus != PermissionStatus.Granted || storageStatus != PermissionStatus.Granted)
-                {
-                    //var results = await CrossPermissions.Current.RequestPermissionsAsync(new[] { Permission.Photos, Permission.Storage });
-                    //photoStatus = results[Permission.Photos];
-                    //storageStatus = results[Permission.Storage];
-                }
-
-                if (CrossMedia.Current.IsPickPhotoSupported && photoStatus == PermissionStatus.Granted && storageStatus == PermissionStatus.Granted)
+                storageStatus = await CrossPermissions.Current.CheckPermissionStatusAsync(Permission.Storage);
+               
+                if (CrossMedia.Current.IsPickPhotoSupported && storageStatus == PermissionStatus.Granted)
                 {
                     try
                     {
@@ -218,7 +208,8 @@ namespace EasyPhotoSketch.ViewModel
                 else
                 {
                     IsBusy = false;
-                    await sMainPage.DisplayAlert("Permission Denied.", "Photo and Storage permissions are required.", "OK");
+                    var statusResult = await CrossPermissions.Current.RequestPermissionsAsync(new[] { Permission.Storage });                     
+                    storageStatus = statusResult[Permission.Storage];
                     return;
                 }
             }
