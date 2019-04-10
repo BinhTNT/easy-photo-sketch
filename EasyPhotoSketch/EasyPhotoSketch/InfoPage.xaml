@@ -14,12 +14,13 @@
                 
                 <Button x:Name="closebtn" Text="X" FontSize="Large" Clicked="CloseButton_Clicked" Grid.Row="0" Grid.Column="0"/>
             </Grid>
-            <StackLayout>
-                <Label VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" FontSize="Large" FontAttributes="Bold" Text="Description" />
-                <Label VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" FontSize="Medium" Text="Take awesome pencil sketching effect" />
-                <Label VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" Margin="0, 0, 0, 50" FontSize="Medium" Text="for your photos" />
-                <Label VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" FontSize="Large" FontAttributes="Bold" Text="Author" />
-                <Label VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" FontSize="Medium" Text="BTNT" />
+            <StackLayout VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand">
+                <Label XAlign="Center" FontSize="Large" FontAttributes="Bold" Text="{Binding AppName}" />
+                <Label XAlign="Center" Margin="0, 0, 0, 50" FontSize="Medium" FontAttributes="Bold" Text="{Binding AppVersion}" />
+                <Label XAlign="Center" FontSize="Large" FontAttributes="Bold" Text="Description" />
+                <Label XAlign="Center" Margin="0, 0, 0, 50" FontSize="Medium" Text="{Binding AppDescription}" />
+                <Label XAlign="Center" FontSize="Large" FontAttributes="Bold" Text="Author" />
+                <Label XAlign="Center" FontSize="Medium" Text="{Binding AppAuthor}" />
             </StackLayout>
         </StackLayout>
     </ContentPage.Content>
