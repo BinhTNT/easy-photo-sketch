@@ -244,12 +244,16 @@ namespace EasyPhotoSketch.ViewModel
         {
             if (m_sketchedBitmap != null)
             {
-                var filePath = System.IO.Path.Combine(m_storagePath, DateTime.Now.Ticks.ToString() + "_" + "easy_photo_sketch.jpg");
-                var stream = new FileStream(filePath, FileMode.Create);
-                m_sketchedBitmap.Compress(Bitmap.CompressFormat.Jpeg, 100, stream);
-                stream.Close();
-                //Make the image available in Gallery by invoke media scanner event
-                MediaScannerHelper.Instance().ScanMediaFile(filePath);
+                string state = Android.OS.Environment.ExternalStorageState;
+                if (Android.OS.Environment.MediaMounted.Equals(state))
+                {
+                    var filePath = System.IO.Path.Combine(m_storagePath, DateTime.Now.Ticks.ToString() + "_" + "easy_photo_sketch.jpg");
+                    var stream = new FileStream(filePath, FileMode.Create);
+                    m_sketchedBitmap.Compress(Bitmap.CompressFormat.Jpeg, 100, stream);
+                    stream.Close();
+                    //Make the image available in Gallery by invoke media scanner event
+                    MediaScannerHelper.Instance().ScanMediaFile(filePath);
+                }
             }
         }
 
@@ -275,7 +279,7 @@ namespace EasyPhotoSketch.ViewModel
         public MemoryStream GetImageStreamFromBitmap(Bitmap bitmap)
         {
             var memory_stream = new MemoryStream();
-            m_sketchedBitmap.Compress(Bitmap.CompressFormat.Jpeg, 100, memory_stream);
+            bitmap.Compress(Bitmap.CompressFormat.Jpeg, 100, memory_stream);
             var imageStream = new MemoryStream(memory_stream.ToArray());
             return imageStream;
         }
