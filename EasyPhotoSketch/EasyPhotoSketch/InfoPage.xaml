@@ -19,8 +19,10 @@
                 <Label XAlign="Center" Margin="0, 0, 0, 50" FontSize="Medium" FontAttributes="Bold" Text="{Binding AppVersion}" />
                 <Label XAlign="Center" FontSize="Large" FontAttributes="Bold" Text="Description" />
                 <Label XAlign="Center" Margin="0, 0, 0, 50" FontSize="Medium" Text="{Binding AppDescription}" />
-                <Label XAlign="Center" FontSize="Large" FontAttributes="Bold" Text="Author" />
-                <Label XAlign="Center" FontSize="Medium" Text="{Binding AppAuthor}" />
+                <Label XAlign="Center" FontSize="Large" FontAttributes="Bold" Text="Developer" />
+                <Label XAlign="Center" Margin="0, 0, 0, 50" FontSize="Medium" Text="{Binding AppAuthor}" />
+                <Label XAlign="Center" FontSize="Large" FontAttributes="Bold" Text="Contact" />
+                <Label XAlign="Center" FontSize="Medium"  Text="{Binding AppContact}" />
             </StackLayout>
         </StackLayout>
     </ContentPage.Content>

@@ -8,6 +8,7 @@ namespace EasyPhotoSketch.ViewModel
         private string m_appVersion = "v1.0";
         private string m_appDescription = "Take awesome pencil sketching effect for your photos";
         private string m_appAuthor = "BTNT";
+        private string m_appContact = "binh.tangocthai@gmail.com";
 
         public string AppName
         {
@@ -42,6 +43,15 @@ namespace EasyPhotoSketch.ViewModel
             set
             {
                 SetProperty(ref m_appAuthor, value);
+            }
+        }
+
+        public string AppContact
+        {
+            get { return m_appContact; }
+            set
+            {
+                SetProperty(ref m_appContact, value);
             }
         }
     }
