@@ -3,7 +3,7 @@ App infos:
 - App Version: 1.0
 - App Descriptions: Process the images saved on device and result the pencil sketching styles images
 - Technology: Xamarin Forms
-- Supported Stores: Google Play
+- Supported platform: Android
 - Author: BTNT (binh.tangocthai@gmail.com)
 
 Used Plugins:
